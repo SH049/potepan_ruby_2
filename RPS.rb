@@ -1,12 +1,14 @@
 class JapaneseGame
     class << self # メソッド内でメソッドを使用できるようにする 特異クラス
+        
         def initialine(judgement) #最終的な勝敗の決定
             @judgement = judgement
         end
-        def RPS #クラスメソッド
-            count = 0
 
-            loop do
+        def RPS #じゃんけん　クラスメソッド
+            count = 0 #あいこの判断
+
+            loop do #勝敗がつかない限りループする
                 if count == 0
                     puts "じゃんけん・・・"
                 else
@@ -22,7 +24,7 @@ class JapaneseGame
                     if count == 0
                         puts "ホイ！"
                     else
-                        puts "ショッ"
+                        puts "ショ！"
                     end
                 else
                     puts "不正な入力です"
@@ -55,31 +57,23 @@ class JapaneseGame
 
                 puts "---------------"
 
-                if (enemy_hand - my_hand == 1) || (enemy_hand - my_hand == -2)
+                if (enemy_hand - my_hand == 1) || (enemy_hand - my_hand == -2) #自分が勝ち
                     @judgement = 0
-                    LookOverThere()
-                    
-                    # puts "あなたの勝ちです"　→この場合、RPSを呼び出した回数だけこの表示が出てしまう
+                    LookOverThere() #あっち向いてホイを呼び出す
                     break
-                elsif (enemy_hand - my_hand == -1) || (enemy_hand - my_hand == 2)
+                elsif (enemy_hand - my_hand == -1) || (enemy_hand - my_hand == 2) #自分が負け
                     @judgement = 1
                     LookOverThere()
-                    # puts "あなたの負けです"
                     break
                 else
-                    count = 1
+                    count = 1 #あいこの場合
                 end
             end
-            # if i = 0　→ 呼び出した回数だけこの表示が出てしまう
-            #     puts "あなたの勝ちです"
-            # elsif i = 1
-            #     puts "あなたの負けです"
-            # end
         end
 
 
-        def LookOverThere #クラスメソッド
-            my_direction = 0
+        def LookOverThere #あっち向いてホイ　クラスメソッド
+            my_direction = 0 #自分の向きの初期化
             loop do
                 puts "あっち向いて〜"
                 puts "0(上)1(下)2(左)3(右)"
